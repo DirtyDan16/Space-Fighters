@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://bv0sfw82ls0oy"]
+
+[ext_resource type="Texture2D" uid="uid://cykcih02m7bhk" path="res://assets/spaceship2.png" id="1_67l1g"]
+[ext_resource type="Script" path="res://scripts/regular_enemy.gd" id="1_vrfyh"]
+[ext_resource type="PackedScene" uid="uid://cpdd015vsnjhn" path="res://scenes/red_death_particles.tscn" id="2_1ba3a"]
+[ext_resource type="FontFile" uid="uid://ct7nicg7asvhg" path="res://assets/MaldiniBold.ttf" id="3_uvte5"]
+[ext_resource type="PackedScene" uid="uid://ds0bvbqur7nob" path="res://scenes/enemy_death_sfx.tscn" id="4_soiya"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p4ax7"]
+size = Vector2(88, 106.25)
+
+[node name="RedEnemy" type="Area2D" groups=["ENEMY-RadShip", "Enemies"]]
+collision_layer = 513
+script = ExtResource("1_vrfyh")
+death_particles = ExtResource("2_1ba3a")
+death_sfx = ExtResource("4_soiya")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -6.125)
+shape = SubResource("RectangleShape2D_p4ax7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-0.312588, 7)
+scale = Vector2(0.260568, 0.313316)
+texture = ExtResource("1_67l1g")
+flip_v = true
+
+[node name="HpDisplay" type="Label" parent="."]
+z_index = 3
+offset_left = -52.0
+offset_top = 21.0
+offset_right = -7.0
+offset_bottom = 52.0
+theme_override_fonts/font = ExtResource("3_uvte5")
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

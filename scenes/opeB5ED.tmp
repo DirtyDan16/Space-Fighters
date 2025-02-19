@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=3 uid="uid://csahhvudjph8c"]
+
+[ext_resource type="Texture2D" uid="uid://d32yqx4gplsts" path="res://assets/space2.jpg" id="1_m1jqo"]
+[ext_resource type="FontFile" uid="uid://ct7nicg7asvhg" path="res://assets/MaldiniBold.ttf" id="2_g3cho"]
+[ext_resource type="Script" path="res://scripts/GoToLevel1.gd" id="3_otxl0"]
+
+[node name="OpeningScreen" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(962, 538)
+texture = ExtResource("1_m1jqo")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 2.0
+offset_right = 1922.0
+offset_bottom = 1078.0
+
+[node name="Button" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.434375
+anchor_top = 0.648423
+anchor_right = 0.563542
+anchor_bottom = 0.70872
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_g3cho")
+theme_override_font_sizes/font_size = 60
+text = "CLICK HERE"
+script = ExtResource("3_otxl0")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.223438
+anchor_top = 0.166976
+anchor_right = 0.782812
+anchor_bottom = 0.329314
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_g3cho")
+theme_override_font_sizes/font_size = 90
+text = "Welcome
+To Begin, click the button below"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="Control/Button" to="Control/Button" method="_on_pressed"]

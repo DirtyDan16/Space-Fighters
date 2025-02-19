@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cknsjx13rmews"]
+
+[ext_resource type="Script" path="res://scripts/bottomLine.gd" id="1_go0if"]
+[ext_resource type="PackedScene" uid="uid://cceewqt6r758v" path="res://scenes/death_sfx.tscn" id="2_52f2u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_67nm8"]
+size = Vector2(3837, 517)
+
+[node name="bottomLine" type="Area2D"]
+script = ExtResource("1_go0if")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1919, 258.5)
+shape = SubResource("RectangleShape2D_67nm8")
+
+[node name="DeathSfx" parent="." instance=ExtResource("2_52f2u")]
+volume_db = 10.0
+autoplay = false
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

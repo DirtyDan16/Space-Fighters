@@ -1,0 +1,178 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxvs2k2sm5x1m"]
+
+[ext_resource type="Texture2D" uid="uid://d32yqx4gplsts" path="res://assets/space2.jpg" id="2_bpr35"]
+[ext_resource type="FontFile" uid="uid://ct7nicg7asvhg" path="res://assets/MaldiniBold.ttf" id="3_bu2wq"]
+[ext_resource type="Script" path="res://scripts/GoToLevelN.gd" id="4_5g6ly"]
+[ext_resource type="Script" path="res://scripts/swap_level_menu_levels.gd" id="4_q03dm"]
+
+[node name="LevelMenu" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(977.5, 554)
+scale = Vector2(1.01823, 1.02593)
+texture = ExtResource("2_bpr35")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1955.0
+offset_bottom = 1108.0
+script = ExtResource("4_5g6ly")
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -205.5
+offset_top = 93.0
+offset_right = 192.5
+offset_bottom = 214.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_bu2wq")
+theme_override_font_sizes/font_size = 90
+text = "Level Menu:"
+
+[node name="LevelsUnlockedMessage" type="Label" parent="Control"]
+visible = false
+layout_mode = 0
+offset_left = 294.0
+offset_top = 875.0
+offset_right = 1675.0
+offset_bottom = 1062.0
+theme_override_fonts/font = ExtResource("3_bu2wq")
+theme_override_font_sizes/font_size = 70
+text = "U haven't unlocked this level yet
+complete the previous level to play this level"
+horizontal_alignment = 1
+
+[node name="AllButtons" type="Node2D" parent="Control"]
+unique_name_in_owner = true
+
+[node name="Level1Button" type="Button" parent="Control/AllButtons" groups=["Levels1-10"]]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 200.0
+offset_top = 500.0
+offset_right = 419.0
+offset_bottom = 565.0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_bu2wq")
+theme_override_font_sizes/font_size = 60
+text = "LEVEL 1"
+
+[node name="Level2Button" type="Button" parent="Control/AllButtons" groups=["Levels1-10"]]
+offset_left = 500.0
+offset_top = 500.0
+offset_right = 687.0
+offset_bottom = 565.0
+theme_override_fonts/font = ExtResource("3_bu2wq")
+theme_override_font_sizes/font_size = 60
+text = "LEVEL 2"
+
+[node name="Level3Button" type="Button" parent="Control/AllButtons" groups=["Levels1-10"]]
+offset_left = 800.0
+offset_top = 500.0
+offset_right = 987.0
+offset_bottom = 565.0
+theme_override_fonts/font = ExtResource("3_bu2wq")
+theme_override_font_sizes/font_size = 60
+text = "LEVEL 3"
+
+[node name="Level4Button" type="Button" parent="Control/AllButtons" groups=["Levels1-10"]]
+offset_left = 1100.0
+offset_top = 500.0
+offset_right = 1287.0
+offset_bottom = 565.0
+theme_override_fonts/font = ExtResource("3_bu2wq")
+theme_override_font_sizes/font_size = 60
+text = "LEVEL 4"
+
+[node name="Level5Button" type="Button" parent="Control/AllButtons" groups=["Levels1-10"]]
+offset_left = 1400.0
+offset_top = 500.0
+offset_right = 1587.0
+offset_bottom = 565.0
+theme_override_fonts/font = ExtResource("3_bu2wq")
+theme_override_font_sizes/font_size = 60
+text = "LEVEL 5"
+
+[node name="Level6Button" type="Button" parent="Control/AllButtons" groups=["Levels1-10"]]
+offset_left = 200.0
+offset_top = 700.0
+offset_right = 387.0
+offset_bottom = 765.0
+theme_override_fonts/font = ExtResource("3_bu2wq")
+theme_override_font_sizes/font_size = 60
+text = "LEVEL 6"
+
+[node name="Level7Button" type="Button" parent="Control/AllButtons" groups=["Levels1-10"]]
+offset_left = 500.0
+offset_top = 700.0
+offset_right = 687.0
+offset_bottom = 765.0
+theme_override_fonts/font = ExtResource("3_bu2wq")
+theme_override_font_sizes/font_size = 60
+text = "LEVEL 7"
+
+[node name="Level8Button" type="Button" parent="Control/AllButtons" groups=["Levels1-10"]]
+offset_left = 800.0
+offset_top = 700.0
+offset_right = 987.0
+offset_bottom = 765.0
+theme_override_fonts/font = ExtResource("3_bu2wq")
+theme_override_font_sizes/font_size = 60
+text = "LEVEL 8"
+
+[node name="Level9Button" type="Button" parent="Control/AllButtons" groups=["Levels1-10"]]
+offset_left = 1100.0
+offset_top = 700.0
+offset_right = 1287.0
+offset_bottom = 765.0
+theme_override_fonts/font = ExtResource("3_bu2wq")
+theme_override_font_sizes/font_size = 60
+text = "LEVEL 9"
+
+[node name="Level10Button" type="Button" parent="Control/AllButtons" groups=["Levels1-10"]]
+offset_left = 1400.0
+offset_top = 700.0
+offset_right = 1602.0
+offset_bottom = 765.0
+theme_override_fonts/font = ExtResource("3_bu2wq")
+theme_override_font_sizes/font_size = 60
+text = "LEVEL 10"
+
+[node name="Level11Button" type="Button" parent="Control/AllButtons" groups=["Levels11-20"]]
+visible = false
+offset_left = 200.0
+offset_top = 500.0
+offset_right = 355.0
+offset_bottom = 584.0
+theme_override_fonts/font = ExtResource("3_bu2wq")
+theme_override_font_sizes/font_size = 50
+text = "ABILITY
+SCRAMBLE"
+
+[node name="Level12Button" type="Button" parent="Control/AllButtons" groups=["Levels11-20"]]
+visible = false
+offset_left = 500.0
+offset_top = 500.0
+offset_right = 702.0
+offset_bottom = 565.0
+theme_override_fonts/font = ExtResource("3_bu2wq")
+theme_override_font_sizes/font_size = 60
+text = "LEVEL 12"
+
+[node name="SwapLevelsButton" type="Button" parent="."]
+offset_left = 1722.0
+offset_top = 93.0
+offset_right = 1850.0
+offset_bottom = 197.0
+theme_override_fonts/font = ExtResource("3_bu2wq")
+theme_override_font_sizes/font_size = 50
+text = "More
+Levels"
+script = ExtResource("4_q03dm")
+
+[connection signal="pressed" from="SwapLevelsButton" to="SwapLevelsButton" method="_on_pressed"]

@@ -1,0 +1,154 @@
+[gd_scene load_steps=14 format=3 uid="uid://b2the8h21sort"]
+
+[ext_resource type="Script" path="res://scripts/level_11.gd" id="1_ymsji"]
+[ext_resource type="PackedScene" uid="uid://ckgmhk81jedlx" path="res://scenes/laser.tscn" id="2_dbpgo"]
+[ext_resource type="PackedScene" uid="uid://c6ysq80thiog0" path="res://scenes/laser_collision_particles.tscn" id="3_47bb0"]
+[ext_resource type="FontFile" uid="uid://ct7nicg7asvhg" path="res://assets/MaldiniBold.ttf" id="4_ovwjo"]
+[ext_resource type="Script" path="res://scripts/ResetLevel.gd" id="5_7p0f7"]
+[ext_resource type="PackedScene" uid="uid://b1cwdfxlgjljj" path="res://scenes/start_level_button.tscn" id="6_hao0e"]
+[ext_resource type="Script" path="res://scripts/GoToLevelSelection.gd" id="7_7xxgh"]
+[ext_resource type="Script" path="res://scripts/changeEnemySpeed.gd" id="8_6k1j1"]
+[ext_resource type="Texture2D" uid="uid://b75h7het7d34g" path="res://assets/space1.jpg" id="9_ax8dh"]
+[ext_resource type="PackedScene" uid="uid://cknsjx13rmews" path="res://scenes/bottom_line.tscn" id="10_3uhbd"]
+[ext_resource type="PackedScene" uid="uid://cr4iufdbhtv04" path="res://scenes/spaceship.tscn" id="11_od4dw"]
+[ext_resource type="PackedScene" uid="uid://db8h60st2bodm" path="res://scenes/yellow_enemy.tscn" id="12_lduqu"]
+[ext_resource type="PackedScene" uid="uid://dtuufux2ehp0d" path="res://scenes/enemy_move_timer.tscn" id="13_evjme"]
+
+[node name="Level11" type="Node2D"]
+script = ExtResource("1_ymsji")
+laser_scene = ExtResource("2_dbpgo")
+laser_collision_particles = ExtResource("3_47bb0")
+metadata/_edit_vertical_guides_ = [1920.0, 960.0, -1000.0, 2920.0]
+metadata/_edit_horizontal_guides_ = [-1000.0, -2000.0, -2999.0, -4025.0, -5006.0, -6001.0, -6998.0, -7999.0]
+
+[node name="GUI" type="Node2D" parent="."]
+z_index = 2
+position = Vector2(960, 540)
+scale = Vector2(0.5, 0.5)
+metadata/_edit_lock_ = true
+
+[node name="LevelName" type="Label" parent="GUI"]
+anchors_preset = -1
+anchor_left = 0.0203125
+anchor_top = 0.0185185
+anchor_right = 0.0460938
+anchor_bottom = 0.0388889
+offset_left = -1842.0
+offset_top = -1040.0
+offset_right = -1720.0
+offset_bottom = -985.0
+theme_override_fonts/font = ExtResource("4_ovwjo")
+theme_override_font_sizes/font_size = 40
+text = "LEVEL: ABILITY SCRAMBLE"
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[node name="ResetLevel" type="Button" parent="GUI"]
+visible = false
+offset_left = -186.0
+offset_top = -968.0
+offset_right = 294.0
+offset_bottom = -839.0
+theme_override_fonts/font = ExtResource("4_ovwjo")
+theme_override_font_sizes/font_size = 90
+text = "RESET LEVEL?"
+script = ExtResource("5_7p0f7")
+metadata/_edit_lock_ = true
+
+[node name="StartLevelButton" parent="GUI" instance=ExtResource("6_hao0e")]
+visible = false
+offset_left = -224.0
+offset_top = -968.0
+offset_right = 190.0
+offset_bottom = -874.0
+theme_override_font_sizes/font_size = 90
+metadata/_edit_lock_ = true
+
+[node name="GoToLevelSelection" type="Button" parent="GUI"]
+visible = false
+offset_left = -364.0
+offset_top = -40.0
+offset_right = 402.0
+offset_bottom = 54.0
+theme_override_fonts/font = ExtResource("4_ovwjo")
+theme_override_font_sizes/font_size = 90
+text = "Go back to level menu"
+script = ExtResource("7_7xxgh")
+metadata/_edit_lock_ = true
+
+[node name="VictoryMessage" type="Label" parent="GUI"]
+visible = false
+offset_left = -698.0
+offset_top = -680.0
+offset_right = 819.0
+offset_bottom = -381.0
+theme_override_fonts/font = ExtResource("4_ovwjo")
+theme_override_font_sizes/font_size = 90
+text = "Congrats! 
+You have beat this Level my little pogchamp
+Next level is available"
+metadata/_edit_lock_ = true
+
+[node name="changeEnemySpeed" type="Button" parent="GUI"]
+offset_left = 1362.0
+offset_top = -984.0
+offset_right = 1849.0
+offset_bottom = -824.0
+focus_mode = 0
+theme_override_fonts/font = ExtResource("4_ovwjo")
+theme_override_font_sizes/font_size = 80
+text = "1x enemy speed"
+script = ExtResource("8_6k1j1")
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[node name="Background" type="Sprite2D" parent="." groups=["Backgrounds"]]
+position = Vector2(960, 540)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_ax8dh")
+metadata/dimensions = Vector2(1920, 1080)
+metadata/_edit_lock_ = true
+
+[node name="bottomLine" parent="." instance=ExtResource("10_3uhbd")]
+position = Vector2(0, 1080)
+scale = Vector2(0.5, 0.5)
+
+[node name="Spaceship" parent="." instance=ExtResource("11_od4dw")]
+position = Vector2(960, 930)
+
+[node name="Enemies" type="Node2D" parent="."]
+position = Vector2(9, 0)
+
+[node name="YellowEnemy" parent="Enemies" groups=["JitterEnemies", "SprintEnemies"] instance=ExtResource("12_lduqu")]
+position = Vector2(571, 200)
+
+[node name="EnemyMoveTimer" parent="." instance=ExtResource("13_evjme")]
+wait_time = 0.5
+
+[node name="ShieldDowntimeTimer" type="Timer" parent="."]
+wait_time = 6.0
+one_shot = true
+
+[node name="ShieldUptimeTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(960, 540)
+
+[connection signal="openNewLevel" from="." to="." method="_on_open_new_level"]
+[connection signal="pressed" from="GUI/ResetLevel" to="GUI/ResetLevel" method="_on_pressed"]
+[connection signal="resetLevel" from="GUI/ResetLevel" to="." method="_on_reset_level_reset_level"]
+[connection signal="start_game" from="GUI/StartLevelButton" to="." method="_on_start_level_button_start_game"]
+[connection signal="pressed" from="GUI/GoToLevelSelection" to="GUI/GoToLevelSelection" method="_on_pressed"]
+[connection signal="button_down" from="GUI/changeEnemySpeed" to="GUI/changeEnemySpeed" method="_on_button_down"]
+[connection signal="button_up" from="GUI/changeEnemySpeed" to="GUI/changeEnemySpeed" method="_on_button_up"]
+[connection signal="changeModifier" from="GUI/changeEnemySpeed" to="." method="_on_change_enemy_speed_change_modifier"]
+[connection signal="area_entered" from="bottomLine" to="." method="_on_bottom_line_area_entered"]
+[connection signal="game_over" from="bottomLine" to="." method="_on_bottom_line_game_over"]
+[connection signal="shoot" from="Spaceship" to="." method="_on_spaceship_shoot"]
+[connection signal="spaceshipDead" from="Spaceship" to="." method="_on_spaceship_spaceship_dead"]
+[connection signal="timeout" from="EnemyMoveTimer" to="." method="_on_enemy_move_timer_timeout"]
+[connection signal="timeout" from="EnemyMoveTimer" to="." method="_on_red_enemy_move_timer_timeout"]
+[connection signal="timeout" from="ShieldDowntimeTimer" to="." method="_on_shield_downtime_timer_timeout"]
+[connection signal="timeout" from="ShieldUptimeTimer" to="." method="_on_shield_uptime_timer_timeout"]

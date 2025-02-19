@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://d4nur0n6txn2w"]
+
+[sub_resource type="Curve" id="Curve_3745x"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.758242), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_23ggs"]
+offsets = PackedFloat32Array(0, 0.566667)
+
+[node name="OrangeDeathParticles" type="CPUParticles2D"]
+position = Vector2(0, 127)
+emitting = false
+amount = 100
+lifetime = 1.5
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 70.71
+initial_velocity_max = 121.21
+scale_amount_min = 7.0
+scale_amount_max = 11.0
+scale_amount_curve = SubResource("Curve_3745x")
+color = Color(0.941176, 0.564706, 0.0980392, 1)
+color_initial_ramp = SubResource("Gradient_23ggs")

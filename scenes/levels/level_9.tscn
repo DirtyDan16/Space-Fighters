@@ -1,0 +1,485 @@
+[gd_scene load_steps=20 format=3 uid="uid://eaf4kxfcx1rd"]
+
+[ext_resource type="Script" path="res://scripts/level_9.gd" id="1_rj3mb"]
+[ext_resource type="PackedScene" uid="uid://ckgmhk81jedlx" path="res://scenes/laser.tscn" id="2_bu57f"]
+[ext_resource type="PackedScene" uid="uid://c6ysq80thiog0" path="res://scenes/laser_collision_particles.tscn" id="3_xk6gu"]
+[ext_resource type="FontFile" uid="uid://ct7nicg7asvhg" path="res://assets/MaldiniBold.ttf" id="4_ja3tp"]
+[ext_resource type="Script" path="res://scripts/ResetLevel.gd" id="5_7xpfv"]
+[ext_resource type="PackedScene" uid="uid://b1cwdfxlgjljj" path="res://scenes/start_level_button.tscn" id="6_563oe"]
+[ext_resource type="Script" path="res://scripts/GoToLevelSelection.gd" id="7_2jxsp"]
+[ext_resource type="Script" path="res://scripts/changeEnemySpeed.gd" id="8_0vbak"]
+[ext_resource type="Texture2D" uid="uid://b75h7het7d34g" path="res://assets/space1.jpg" id="9_o7m3v"]
+[ext_resource type="PackedScene" uid="uid://cknsjx13rmews" path="res://scenes/bottom_line.tscn" id="10_mcg66"]
+[ext_resource type="PackedScene" uid="uid://cr4iufdbhtv04" path="res://scenes/spaceship.tscn" id="11_16t83"]
+[ext_resource type="PackedScene" uid="uid://db8h60st2bodm" path="res://scenes/yellow_enemy.tscn" id="12_1px7s"]
+[ext_resource type="PackedScene" uid="uid://bjob61k6whdrt" path="res://scenes/enemy_shield.tscn" id="13_4r504"]
+[ext_resource type="PackedScene" uid="uid://bv0sfw82ls0oy" path="res://scenes/red_enemy.tscn" id="14_avy7m"]
+[ext_resource type="PackedScene" uid="uid://cpfq3vr71iodu" path="res://scenes/green_enemy.tscn" id="15_b22q0"]
+[ext_resource type="PackedScene" uid="uid://bpei468l83hhm" path="res://scenes/orange_enemy.tscn" id="16_uroqs"]
+[ext_resource type="PackedScene" uid="uid://rr85lshtcpee" path="res://scenes/blue_enemy.tscn" id="17_imows"]
+[ext_resource type="PackedScene" uid="uid://dkkhbtbdfq3l2" path="res://scenes/purple_enemy.tscn" id="18_2ilsl"]
+[ext_resource type="PackedScene" uid="uid://dtuufux2ehp0d" path="res://scenes/enemy_move_timer.tscn" id="18_7er4s"]
+
+[node name="Level9" type="Node2D"]
+script = ExtResource("1_rj3mb")
+laser_scene = ExtResource("2_bu57f")
+laser_collision_particles = ExtResource("3_xk6gu")
+metadata/_edit_vertical_guides_ = [1920.0, 960.0, -1000.0, 2920.0]
+metadata/_edit_horizontal_guides_ = [-1000.0, -2000.0, -2999.0, -4025.0, -5006.0, -6001.0, -6998.0, -7999.0]
+
+[node name="GUI" type="Node2D" parent="."]
+z_index = 2
+position = Vector2(960, 540)
+scale = Vector2(0.5, 0.5)
+metadata/_edit_lock_ = true
+
+[node name="LevelName" type="Label" parent="GUI"]
+anchors_preset = -1
+anchor_left = 0.0203125
+anchor_top = 0.0185185
+anchor_right = 0.0460938
+anchor_bottom = 0.0388889
+offset_left = -1842.0
+offset_top = -1040.0
+offset_right = -1720.0
+offset_bottom = -985.0
+theme_override_fonts/font = ExtResource("4_ja3tp")
+theme_override_font_sizes/font_size = 40
+text = "LEVEL: 9"
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[node name="ResetLevel" type="Button" parent="GUI"]
+visible = false
+offset_left = -186.0
+offset_top = -968.0
+offset_right = 294.0
+offset_bottom = -839.0
+theme_override_fonts/font = ExtResource("4_ja3tp")
+theme_override_font_sizes/font_size = 90
+text = "RESET LEVEL?"
+script = ExtResource("5_7xpfv")
+metadata/_edit_lock_ = true
+
+[node name="StartLevelButton" parent="GUI" instance=ExtResource("6_563oe")]
+visible = false
+offset_left = -224.0
+offset_top = -968.0
+offset_right = 190.0
+offset_bottom = -874.0
+theme_override_font_sizes/font_size = 90
+metadata/_edit_lock_ = true
+
+[node name="GoToLevelSelection" type="Button" parent="GUI"]
+visible = false
+offset_left = -364.0
+offset_top = -40.0
+offset_right = 402.0
+offset_bottom = 54.0
+theme_override_fonts/font = ExtResource("4_ja3tp")
+theme_override_font_sizes/font_size = 90
+text = "Go back to level menu"
+script = ExtResource("7_2jxsp")
+metadata/_edit_lock_ = true
+
+[node name="VictoryMessage" type="Label" parent="GUI"]
+visible = false
+offset_left = -698.0
+offset_top = -680.0
+offset_right = 819.0
+offset_bottom = -381.0
+theme_override_fonts/font = ExtResource("4_ja3tp")
+theme_override_font_sizes/font_size = 90
+text = "Congrats! 
+You have beat this Level my little pogchamp
+Next level is available"
+metadata/_edit_lock_ = true
+
+[node name="changeEnemySpeed" type="Button" parent="GUI"]
+offset_left = 1362.0
+offset_top = -984.0
+offset_right = 1849.0
+offset_bottom = -824.0
+focus_mode = 0
+theme_override_fonts/font = ExtResource("4_ja3tp")
+theme_override_font_sizes/font_size = 80
+text = "1x enemy speed"
+script = ExtResource("8_0vbak")
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[node name="Background" type="Sprite2D" parent="." groups=["Backgrounds"]]
+position = Vector2(960, 540)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_o7m3v")
+metadata/dimensions = Vector2(1920, 1080)
+metadata/_edit_lock_ = true
+
+[node name="bottomLine" parent="." instance=ExtResource("10_mcg66")]
+position = Vector2(0, 1080)
+scale = Vector2(0.5, 0.5)
+
+[node name="Spaceship" parent="." instance=ExtResource("11_16t83")]
+position = Vector2(960, 930)
+
+[node name="Enemies" type="Node2D" parent="."]
+position = Vector2(9, 0)
+
+[node name="RedEnemy12" parent="Enemies" instance=ExtResource("14_avy7m")]
+position = Vector2(939, 295)
+
+[node name="RedEnemy33" parent="Enemies" instance=ExtResource("14_avy7m")]
+position = Vector2(857, 404)
+
+[node name="Shield" parent="Enemies/RedEnemy33" instance=ExtResource("13_4r504")]
+
+[node name="RedEnemy37" parent="Enemies" instance=ExtResource("14_avy7m")]
+position = Vector2(940, 513)
+
+[node name="RedEnemy44" parent="Enemies" instance=ExtResource("14_avy7m")]
+position = Vector2(1015, 404)
+
+[node name="Shield" parent="Enemies/RedEnemy44" instance=ExtResource("13_4r504")]
+
+[node name="BlueEnemy3" parent="Enemies" instance=ExtResource("17_imows")]
+position = Vector2(498, 128)
+
+[node name="BlueEnemy4" parent="Enemies" instance=ExtResource("17_imows")]
+position = Vector2(1393, 128)
+
+[node name="PurpleEnemy" parent="Enemies" instance=ExtResource("18_2ilsl")]
+position = Vector2(1199, -600)
+
+[node name="PurpleEnemy2" parent="Enemies" instance=ExtResource("18_2ilsl")]
+position = Vector2(644, -600)
+
+[node name="PurpleEnemy3" parent="Enemies" instance=ExtResource("18_2ilsl")]
+position = Vector2(954, -3486)
+
+[node name="PurpleEnemy4" parent="Enemies" instance=ExtResource("18_2ilsl")]
+position = Vector2(954, -3395)
+
+[node name="PurpleEnemy5" parent="Enemies" instance=ExtResource("18_2ilsl")]
+position = Vector2(954, -3300)
+
+[node name="PurpleEnemy6" parent="Enemies" instance=ExtResource("18_2ilsl")]
+position = Vector2(1798, -4138)
+
+[node name="PurpleEnemy7" parent="Enemies" instance=ExtResource("18_2ilsl")]
+position = Vector2(1798, -4047)
+
+[node name="PurpleEnemy8" parent="Enemies" instance=ExtResource("18_2ilsl")]
+position = Vector2(1798, -3952)
+
+[node name="PurpleEnemy9" parent="Enemies" instance=ExtResource("18_2ilsl")]
+position = Vector2(508, -4714)
+
+[node name="PurpleEnemy10" parent="Enemies" instance=ExtResource("18_2ilsl")]
+position = Vector2(508, -4623)
+
+[node name="PurpleEnemy11" parent="Enemies" instance=ExtResource("18_2ilsl")]
+position = Vector2(508, -4528)
+
+[node name="PurpleEnemy12" parent="Enemies" instance=ExtResource("18_2ilsl")]
+position = Vector2(1282, -5420)
+
+[node name="PurpleEnemy13" parent="Enemies" instance=ExtResource("18_2ilsl")]
+position = Vector2(1282, -5329)
+
+[node name="PurpleEnemy15" parent="Enemies" instance=ExtResource("18_2ilsl")]
+position = Vector2(774, -5567)
+
+[node name="PurpleEnemy16" parent="Enemies" instance=ExtResource("18_2ilsl")]
+position = Vector2(774, -5476)
+
+[node name="PurpleEnemy14" parent="Enemies" instance=ExtResource("18_2ilsl")]
+position = Vector2(1282, -5234)
+
+[node name="OrangeEnemy" parent="Enemies" instance=ExtResource("16_uroqs")]
+position = Vector2(940, -177)
+
+[node name="Shield" parent="Enemies/OrangeEnemy" instance=ExtResource("13_4r504")]
+scale = Vector2(1.75, 1.75)
+
+[node name="RedEnemy" parent="Enemies" instance=ExtResource("14_avy7m")]
+position = Vector2(212, -2769)
+
+[node name="RedEnemy2" parent="Enemies" instance=ExtResource("14_avy7m")]
+position = Vector2(322, -2769)
+
+[node name="RedEnemy9" parent="Enemies" instance=ExtResource("14_avy7m")]
+position = Vector2(498, -3111)
+
+[node name="Shield" parent="Enemies/RedEnemy9" instance=ExtResource("13_4r504")]
+
+[node name="RedEnemy10" parent="Enemies" instance=ExtResource("14_avy7m")]
+position = Vector2(1480, -3642)
+
+[node name="Shield" parent="Enemies/RedEnemy10" instance=ExtResource("13_4r504")]
+
+[node name="RedEnemy3" parent="Enemies" instance=ExtResource("14_avy7m")]
+position = Vector2(212, -2638)
+
+[node name="RedEnemy4" parent="Enemies" instance=ExtResource("14_avy7m")]
+position = Vector2(322, -2638)
+
+[node name="RedEnemy5" parent="Enemies" instance=ExtResource("14_avy7m")]
+position = Vector2(1487, -3021)
+
+[node name="RedEnemy11" parent="Enemies" instance=ExtResource("14_avy7m")]
+position = Vector2(1059, -3899)
+
+[node name="RedEnemy17" parent="Enemies" instance=ExtResource("14_avy7m")]
+position = Vector2(1782, -4692)
+
+[node name="RedEnemy6" parent="Enemies" instance=ExtResource("14_avy7m")]
+position = Vector2(1597, -3021)
+
+[node name="RedEnemy7" parent="Enemies" instance=ExtResource("14_avy7m")]
+position = Vector2(1487, -2890)
+
+[node name="RedEnemy8" parent="Enemies" instance=ExtResource("14_avy7m")]
+position = Vector2(1597, -2890)
+
+[node name="RedEnemy18" parent="Enemies" instance=ExtResource("14_avy7m")]
+position = Vector2(366, -5276)
+
+[node name="RedEnemy19" parent="Enemies" instance=ExtResource("14_avy7m")]
+position = Vector2(476, -5276)
+
+[node name="RedEnemy20" parent="Enemies" instance=ExtResource("14_avy7m")]
+position = Vector2(366, -5145)
+
+[node name="RedEnemy21" parent="Enemies" instance=ExtResource("14_avy7m")]
+position = Vector2(476, -5145)
+
+[node name="RedEnemy13" parent="Enemies" instance=ExtResource("14_avy7m")]
+position = Vector2(160, -4116)
+
+[node name="RedEnemy14" parent="Enemies" instance=ExtResource("14_avy7m")]
+position = Vector2(270, -4116)
+
+[node name="RedEnemy15" parent="Enemies" instance=ExtResource("14_avy7m")]
+position = Vector2(160, -3985)
+
+[node name="RedEnemy16" parent="Enemies" instance=ExtResource("14_avy7m")]
+position = Vector2(270, -3985)
+
+[node name="GreenEnemy" parent="Enemies" instance=ExtResource("15_b22q0")]
+position = Vector2(277, -1000)
+
+[node name="GreenEnemy2" parent="Enemies" instance=ExtResource("15_b22q0")]
+position = Vector2(602, -995)
+
+[node name="GreenEnemy5" parent="Enemies" instance=ExtResource("15_b22q0")]
+position = Vector2(790, -1166)
+
+[node name="GreenEnemy6" parent="Enemies" instance=ExtResource("15_b22q0")]
+position = Vector2(1115, -1161)
+
+[node name="GreenEnemy3" parent="Enemies" instance=ExtResource("15_b22q0")]
+position = Vector2(1282, -1000)
+
+[node name="GreenEnemy4" parent="Enemies" instance=ExtResource("15_b22q0")]
+position = Vector2(1607, -995)
+
+[node name="YellowEnemy7" parent="Enemies" instance=ExtResource("12_1px7s")]
+position = Vector2(-2508, -2074)
+
+[node name="Shield" parent="Enemies/YellowEnemy7" instance=ExtResource("13_4r504")]
+scale = Vector2(1.3, 1.3)
+
+[node name="YellowEnemy8" parent="Enemies" instance=ExtResource("12_1px7s")]
+position = Vector2(-2694, -2074)
+
+[node name="Shield" parent="Enemies/YellowEnemy8" instance=ExtResource("13_4r504")]
+scale = Vector2(1.3, 1.3)
+
+[node name="YellowEnemy9" parent="Enemies" instance=ExtResource("12_1px7s")]
+position = Vector2(-2905, -2074)
+
+[node name="Shield" parent="Enemies/YellowEnemy9" instance=ExtResource("13_4r504")]
+scale = Vector2(1.3, 1.3)
+
+[node name="YellowEnemy10" parent="Enemies" instance=ExtResource("12_1px7s")]
+position = Vector2(-2236, -1352)
+
+[node name="Shield" parent="Enemies/YellowEnemy10" instance=ExtResource("13_4r504")]
+scale = Vector2(1.3, 1.3)
+
+[node name="YellowEnemy11" parent="Enemies" instance=ExtResource("12_1px7s")]
+position = Vector2(-2422, -1352)
+
+[node name="Shield" parent="Enemies/YellowEnemy11" instance=ExtResource("13_4r504")]
+scale = Vector2(1.3, 1.3)
+
+[node name="YellowEnemy12" parent="Enemies" instance=ExtResource("12_1px7s")]
+position = Vector2(-2633, -1352)
+
+[node name="Shield" parent="Enemies/YellowEnemy12" instance=ExtResource("13_4r504")]
+scale = Vector2(1.3, 1.3)
+
+[node name="YellowEnemy13" parent="Enemies" instance=ExtResource("12_1px7s")]
+position = Vector2(4050, -1728)
+
+[node name="Shield" parent="Enemies/YellowEnemy13" instance=ExtResource("13_4r504")]
+scale = Vector2(1.3, 1.3)
+
+[node name="YellowEnemy14" parent="Enemies" instance=ExtResource("12_1px7s")]
+position = Vector2(3864, -1728)
+
+[node name="Shield" parent="Enemies/YellowEnemy14" instance=ExtResource("13_4r504")]
+scale = Vector2(1.3, 1.3)
+
+[node name="YellowEnemy15" parent="Enemies" instance=ExtResource("12_1px7s")]
+position = Vector2(3653, -1728)
+
+[node name="Shield" parent="Enemies/YellowEnemy15" instance=ExtResource("13_4r504")]
+scale = Vector2(1.3, 1.3)
+
+[node name="GreenEnemy7" parent="Enemies" instance=ExtResource("15_b22q0")]
+position = Vector2(-1538, -6005)
+
+[node name="GreenEnemy8" parent="Enemies" instance=ExtResource("15_b22q0")]
+position = Vector2(-1537, -6125)
+
+[node name="GreenEnemy9" parent="Enemies" instance=ExtResource("15_b22q0")]
+position = Vector2(-1844, -6055)
+
+[node name="GreenEnemy10" parent="Enemies" instance=ExtResource("15_b22q0")]
+position = Vector2(-1843, -6175)
+
+[node name="GreenEnemy11" parent="Enemies" instance=ExtResource("15_b22q0")]
+position = Vector2(2968, -6694)
+
+[node name="GreenEnemy12" parent="Enemies" instance=ExtResource("15_b22q0")]
+position = Vector2(2969, -6814)
+
+[node name="GreenEnemy13" parent="Enemies" instance=ExtResource("15_b22q0")]
+position = Vector2(2662, -6552)
+
+[node name="GreenEnemy14" parent="Enemies" instance=ExtResource("15_b22q0")]
+position = Vector2(2663, -6672)
+
+[node name="GreenEnemy15" parent="Enemies" instance=ExtResource("15_b22q0")]
+position = Vector2(1652, -4250)
+
+[node name="GreenEnemy16" parent="Enemies" instance=ExtResource("15_b22q0")]
+position = Vector2(278, -3740)
+
+[node name="GreenEnemy17" parent="Enemies" instance=ExtResource("15_b22q0")]
+position = Vector2(850, -4570)
+
+[node name="GreenEnemy18" parent="Enemies" instance=ExtResource("15_b22q0")]
+position = Vector2(1653, -5078)
+
+[node name="Shield" parent="Enemies/GreenEnemy18" instance=ExtResource("13_4r504")]
+
+[node name="GreenEnemy19" parent="Enemies" instance=ExtResource("15_b22q0")]
+position = Vector2(1044, -4570)
+
+[node name="PurpleEnemy17" parent="Enemies" instance=ExtResource("18_2ilsl")]
+position = Vector2(263, -7411)
+
+[node name="PurpleEnemy18" parent="Enemies" instance=ExtResource("18_2ilsl")]
+position = Vector2(554, -7411)
+
+[node name="Shield" parent="Enemies/PurpleEnemy18" instance=ExtResource("13_4r504")]
+
+[node name="PurpleEnemy19" parent="Enemies" instance=ExtResource("18_2ilsl")]
+position = Vector2(851, -7411)
+
+[node name="PurpleEnemy20" parent="Enemies" instance=ExtResource("18_2ilsl")]
+position = Vector2(1221, -7819)
+
+[node name="PurpleEnemy21" parent="Enemies" instance=ExtResource("18_2ilsl")]
+position = Vector2(1221, -7819)
+
+[node name="Shield" parent="Enemies/PurpleEnemy21" instance=ExtResource("13_4r504")]
+
+[node name="PurpleEnemy22" parent="Enemies" instance=ExtResource("18_2ilsl")]
+position = Vector2(1512, -7819)
+
+[node name="PurpleEnemy23" parent="Enemies" instance=ExtResource("18_2ilsl")]
+position = Vector2(1809, -7819)
+
+[node name="PurpleEnemy24" parent="Enemies" instance=ExtResource("18_2ilsl")]
+position = Vector2(464, -8266)
+
+[node name="PurpleEnemy25" parent="Enemies" instance=ExtResource("18_2ilsl")]
+position = Vector2(464, -8266)
+
+[node name="Shield" parent="Enemies/PurpleEnemy25" instance=ExtResource("13_4r504")]
+
+[node name="PurpleEnemy26" parent="Enemies" instance=ExtResource("18_2ilsl")]
+position = Vector2(755, -8266)
+
+[node name="PurpleEnemy27" parent="Enemies" instance=ExtResource("18_2ilsl")]
+position = Vector2(1052, -8266)
+
+[node name="PurpleEnemy28" parent="Enemies" instance=ExtResource("18_2ilsl")]
+position = Vector2(691, -8952)
+
+[node name="PurpleEnemy29" parent="Enemies" instance=ExtResource("18_2ilsl")]
+position = Vector2(1231, -8952)
+
+[node name="BlueEnemy" parent="Enemies" instance=ExtResource("17_imows")]
+position = Vector2(205, -8636)
+
+[node name="BlueEnemy2" parent="Enemies" instance=ExtResource("17_imows")]
+position = Vector2(684, -8636)
+
+[node name="BlueEnemy5" parent="Enemies" instance=ExtResource("17_imows")]
+position = Vector2(1231, -8636)
+
+[node name="BlueEnemy6" parent="Enemies" instance=ExtResource("17_imows")]
+position = Vector2(1663, -8636)
+
+[node name="BlueEnemy7" parent="Enemies" instance=ExtResource("17_imows")]
+position = Vector2(448, -8952)
+
+[node name="BlueEnemy8" parent="Enemies" instance=ExtResource("17_imows")]
+position = Vector2(950, -8952)
+
+[node name="BlueEnemy9" parent="Enemies" instance=ExtResource("17_imows")]
+position = Vector2(1454, -8952)
+
+[node name="EnemyMoveTimer" parent="." instance=ExtResource("18_7er4s")]
+wait_time = 0.25
+
+[node name="ShieldDowntimeTimer" type="Timer" parent="."]
+wait_time = 6.0
+one_shot = true
+
+[node name="ShieldUptimeTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(960, 540)
+
+[connection signal="openNewLevel" from="." to="." method="_on_open_new_level"]
+[connection signal="pressed" from="GUI/ResetLevel" to="GUI/ResetLevel" method="_on_pressed"]
+[connection signal="resetLevel" from="GUI/ResetLevel" to="." method="_on_reset_level_reset_level"]
+[connection signal="start_game" from="GUI/StartLevelButton" to="." method="_on_start_level_button_start_game"]
+[connection signal="pressed" from="GUI/GoToLevelSelection" to="GUI/GoToLevelSelection" method="_on_pressed"]
+[connection signal="button_down" from="GUI/changeEnemySpeed" to="GUI/changeEnemySpeed" method="_on_button_down"]
+[connection signal="button_up" from="GUI/changeEnemySpeed" to="GUI/changeEnemySpeed" method="_on_button_up"]
+[connection signal="changeModifier" from="GUI/changeEnemySpeed" to="." method="_on_change_enemy_speed_change_modifier"]
+[connection signal="area_entered" from="bottomLine" to="." method="_on_bottom_line_area_entered"]
+[connection signal="game_over" from="bottomLine" to="." method="_on_bottom_line_game_over"]
+[connection signal="shoot" from="Spaceship" to="." method="_on_spaceship_shoot"]
+[connection signal="spaceshipDead" from="Spaceship" to="." method="_on_spaceship_spaceship_dead"]
+[connection signal="create_enemy_laser" from="Enemies/BlueEnemy3" to="." method="_on_enemy_create_enemy_laser"]
+[connection signal="create_enemy_laser" from="Enemies/BlueEnemy4" to="." method="_on_enemy_create_enemy_laser"]
+[connection signal="create_enemy_laser" from="Enemies/BlueEnemy" to="." method="_on_enemy_create_enemy_laser"]
+[connection signal="create_enemy_laser" from="Enemies/BlueEnemy2" to="." method="_on_enemy_create_enemy_laser"]
+[connection signal="create_enemy_laser" from="Enemies/BlueEnemy5" to="." method="_on_enemy_create_enemy_laser"]
+[connection signal="create_enemy_laser" from="Enemies/BlueEnemy6" to="." method="_on_enemy_create_enemy_laser"]
+[connection signal="create_enemy_laser" from="Enemies/BlueEnemy7" to="." method="_on_enemy_create_enemy_laser"]
+[connection signal="create_enemy_laser" from="Enemies/BlueEnemy8" to="." method="_on_enemy_create_enemy_laser"]
+[connection signal="create_enemy_laser" from="Enemies/BlueEnemy9" to="." method="_on_enemy_create_enemy_laser"]
+[connection signal="timeout" from="EnemyMoveTimer" to="." method="_on_enemy_move_timer_timeout"]
+[connection signal="timeout" from="EnemyMoveTimer" to="." method="_on_red_enemy_move_timer_timeout"]
+[connection signal="timeout" from="ShieldDowntimeTimer" to="." method="_on_shield_downtime_timer_timeout"]
+[connection signal="timeout" from="ShieldUptimeTimer" to="." method="_on_shield_uptime_timer_timeout"]

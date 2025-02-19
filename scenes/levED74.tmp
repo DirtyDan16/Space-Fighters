@@ -1,0 +1,122 @@
+[gd_scene load_steps=11 format=3 uid="uid://b5wxgs6gmclno"]
+
+[ext_resource type="Script" path="res://scripts/level_1.gd" id="1_g2pdt"]
+[ext_resource type="Texture2D" uid="uid://b75h7het7d34g" path="res://assets/space1.jpg" id="2_lpvk7"]
+[ext_resource type="PackedScene" uid="uid://ckgmhk81jedlx" path="res://scenes/laser.tscn" id="3_yn0y3"]
+[ext_resource type="PackedScene" uid="uid://cr4iufdbhtv04" path="res://scenes/spaceship.tscn" id="4_23ttv"]
+[ext_resource type="FontFile" uid="uid://ct7nicg7asvhg" path="res://assets/MaldiniBold.ttf" id="4_ulp6p"]
+[ext_resource type="PackedScene" uid="uid://b1cwdfxlgjljj" path="res://scenes/start_level_button.tscn" id="5_6pn3k"]
+[ext_resource type="Script" path="res://scripts/ResetLevel.gd" id="5_adjcg"]
+[ext_resource type="PackedScene" uid="uid://cknsjx13rmews" path="res://scenes/bottom_line.tscn" id="5_x6uau"]
+[ext_resource type="PackedScene" uid="uid://bv0sfw82ls0oy" path="res://scenes/red_enemy.tscn" id="6_58nwr"]
+[ext_resource type="PackedScene" uid="uid://dtuufux2ehp0d" path="res://scenes/enemy_move_timer.tscn" id="7_kdcpm"]
+
+[node name="Level1" type="Node2D"]
+script = ExtResource("1_g2pdt")
+laser_scene = ExtResource("3_yn0y3")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_lpvk7")
+
+[node name="ResetLevel" type="Button" parent="Background"]
+visible = false
+offset_left = -186.0
+offset_top = -968.0
+offset_right = 135.0
+offset_bottom = -879.0
+theme_override_fonts/font = ExtResource("4_ulp6p")
+theme_override_font_sizes/font_size = 90
+text = "RESET LEVEL?"
+script = ExtResource("5_adjcg")
+
+[node name="LevelName" type="Label" parent="Background"]
+z_index = 2
+anchors_preset = -1
+anchor_left = 0.0203125
+anchor_top = 0.0185185
+anchor_right = 0.0460938
+anchor_bottom = 0.0388889
+offset_left = -1920.0
+offset_top = -1080.0
+offset_right = -1920.0
+offset_bottom = -1080.0
+theme_override_fonts/font = ExtResource("4_ulp6p")
+theme_override_font_sizes/font_size = 40
+text = "LEVEL: 1"
+metadata/_edit_use_anchors_ = true
+
+[node name="bottomLine" parent="Background" instance=ExtResource("5_x6uau")]
+position = Vector2(-1920, 1086)
+
+[node name="Spaceship" parent="." instance=ExtResource("4_23ttv")]
+position = Vector2(960, 930)
+
+[node name="StartLevelButton" parent="." instance=ExtResource("5_6pn3k")]
+offset_left = 816.0
+offset_top = 56.0
+offset_right = 1092.0
+offset_bottom = 121.0
+
+[node name="Enemies" type="Node2D" parent="."]
+position = Vector2(-22, 0)
+
+[node name="RedEnemy" parent="Enemies" instance=ExtResource("6_58nwr")]
+position = Vector2(200, 200)
+
+[node name="RedEnemy2" parent="Enemies" instance=ExtResource("6_58nwr")]
+position = Vector2(400, 200)
+
+[node name="RedEnemy3" parent="Enemies" instance=ExtResource("6_58nwr")]
+position = Vector2(600, 200)
+
+[node name="RedEnemy4" parent="Enemies" instance=ExtResource("6_58nwr")]
+position = Vector2(1700, 200)
+
+[node name="RedEnemy5" parent="Enemies" instance=ExtResource("6_58nwr")]
+position = Vector2(1500, 200)
+
+[node name="RedEnemy6" parent="Enemies" instance=ExtResource("6_58nwr")]
+position = Vector2(1300, 200)
+
+[node name="RedEnemy7" parent="Enemies" instance=ExtResource("6_58nwr")]
+position = Vector2(1100, 300)
+
+[node name="RedEnemy8" parent="Enemies" instance=ExtResource("6_58nwr")]
+position = Vector2(800, 300)
+
+[node name="RedEnemy9" parent="Enemies" instance=ExtResource("6_58nwr")]
+position = Vector2(400, 400)
+
+[node name="RedEnemy10" parent="Enemies" instance=ExtResource("6_58nwr")]
+position = Vector2(1500, 400)
+
+[node name="RedEnemy11" parent="Enemies" instance=ExtResource("6_58nwr")]
+position = Vector2(950, 400)
+
+[node name="RedEnemy12" parent="Enemies" instance=ExtResource("6_58nwr")]
+position = Vector2(950, 250)
+
+[node name="RedEnemy13" parent="Enemies" instance=ExtResource("6_58nwr")]
+position = Vector2(600, -100)
+
+[node name="RedEnemy14" parent="Enemies" instance=ExtResource("6_58nwr")]
+position = Vector2(200, -100)
+
+[node name="RedEnemy15" parent="Enemies" instance=ExtResource("6_58nwr")]
+position = Vector2(1300, -100)
+
+[node name="RedEnemy16" parent="Enemies" instance=ExtResource("6_58nwr")]
+position = Vector2(1700, -100)
+
+[node name="EnemyMoveTimer" parent="." instance=ExtResource("7_kdcpm")]
+
+[connection signal="pressed" from="Background/ResetLevel" to="Background/ResetLevel" method="_on_pressed"]
+[connection signal="area_entered" from="Background/bottomLine" to="." method="_on_bottom_line_area_entered"]
+[connection signal="game_over" from="Background/bottomLine" to="." method="_on_bottom_line_game_over"]
+[connection signal="shoot" from="Spaceship" to="." method="_on_spaceship_shoot"]
+[connection signal="start_game" from="StartLevelButton" to="." method="_on_start_level_button_start_game"]
+[connection signal="hp_modified" from="Enemies/RedEnemy" to="." method="_on_red_enemy_hp_modified"]
+[connection signal="timeout" from="EnemyMoveTimer" to="." method="_on_enemy_move_timer_timeout"]
+[connection signal="timeout" from="EnemyMoveTimer" to="." method="_on_red_enemy_move_timer_timeout"]

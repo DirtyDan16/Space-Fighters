@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://ds0bvbqur7nob"]
+
+[ext_resource type="AudioStream" uid="uid://bnrifoehi1ler" path="res://SFX/EnemyDeath.wav" id="1_qkxjh"]
+
+[node name="EnemyDeathSfx" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_qkxjh")
+autoplay = true

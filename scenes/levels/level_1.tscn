@@ -1,0 +1,176 @@
+[gd_scene load_steps=15 format=3 uid="uid://b5wxgs6gmclno"]
+
+[ext_resource type="Script" path="res://scripts/level_1.gd" id="1_nb3a4"]
+[ext_resource type="PackedScene" uid="uid://ckgmhk81jedlx" path="res://scenes/laser.tscn" id="2_0krxv"]
+[ext_resource type="FontFile" uid="uid://ct7nicg7asvhg" path="res://assets/MaldiniBold.ttf" id="3_0wtv6"]
+[ext_resource type="PackedScene" uid="uid://c6ysq80thiog0" path="res://scenes/laser_collision_particles.tscn" id="3_k6j16"]
+[ext_resource type="Script" path="res://scripts/ResetLevel.gd" id="4_62c1s"]
+[ext_resource type="PackedScene" uid="uid://b1cwdfxlgjljj" path="res://scenes/start_level_button.tscn" id="5_4wo5k"]
+[ext_resource type="Script" path="res://scripts/GoToLevelSelection.gd" id="6_kviud"]
+[ext_resource type="Texture2D" uid="uid://b75h7het7d34g" path="res://assets/space1.jpg" id="7_gwj01"]
+[ext_resource type="Script" path="res://scripts/changeEnemySpeed.gd" id="7_h427t"]
+[ext_resource type="PackedScene" uid="uid://cknsjx13rmews" path="res://scenes/bottom_line.tscn" id="8_sh53b"]
+[ext_resource type="PackedScene" uid="uid://cr4iufdbhtv04" path="res://scenes/spaceship.tscn" id="9_ghywo"]
+[ext_resource type="PackedScene" uid="uid://bv0sfw82ls0oy" path="res://scenes/red_enemy.tscn" id="10_hbbyg"]
+[ext_resource type="PackedScene" uid="uid://dtuufux2ehp0d" path="res://scenes/enemy_move_timer.tscn" id="11_du533"]
+[ext_resource type="PackedScene" uid="uid://bpei468l83hhm" path="res://scenes/orange_enemy.tscn" id="11_fyvt3"]
+
+[node name="Level1" type="Node2D"]
+script = ExtResource("1_nb3a4")
+laser_scene = ExtResource("2_0krxv")
+laser_collision_particles = ExtResource("3_k6j16")
+
+[node name="GUI" type="Node2D" parent="."]
+z_index = 2
+position = Vector2(960, 540)
+scale = Vector2(0.5, 0.5)
+
+[node name="LevelName" type="Label" parent="GUI"]
+anchors_preset = -1
+anchor_left = 0.0203125
+anchor_top = 0.0185185
+anchor_right = 0.0460938
+anchor_bottom = 0.0388889
+offset_left = -1842.0
+offset_top = -1040.0
+offset_right = -1720.0
+offset_bottom = -985.0
+theme_override_fonts/font = ExtResource("3_0wtv6")
+theme_override_font_sizes/font_size = 40
+text = "LEVEL: 1"
+metadata/_edit_use_anchors_ = true
+
+[node name="ResetLevel" type="Button" parent="GUI"]
+visible = false
+offset_left = -186.0
+offset_top = -968.0
+offset_right = 294.0
+offset_bottom = -839.0
+theme_override_fonts/font = ExtResource("3_0wtv6")
+theme_override_font_sizes/font_size = 90
+text = "RESET LEVEL?"
+script = ExtResource("4_62c1s")
+
+[node name="StartLevelButton" parent="GUI" instance=ExtResource("5_4wo5k")]
+visible = false
+offset_left = -224.0
+offset_top = -968.0
+offset_right = 190.0
+offset_bottom = -874.0
+theme_override_font_sizes/font_size = 90
+
+[node name="GoToLevelSelection" type="Button" parent="GUI"]
+visible = false
+offset_left = -364.0
+offset_top = -40.0
+offset_right = 402.0
+offset_bottom = 54.0
+theme_override_fonts/font = ExtResource("3_0wtv6")
+theme_override_font_sizes/font_size = 90
+text = "Go back to level menu"
+script = ExtResource("6_kviud")
+
+[node name="VictoryMessage" type="Label" parent="GUI"]
+visible = false
+offset_left = -698.0
+offset_top = -680.0
+offset_right = 819.0
+offset_bottom = -381.0
+theme_override_fonts/font = ExtResource("3_0wtv6")
+theme_override_font_sizes/font_size = 90
+text = "Congrats! 
+You have beat this Level my little pogchamp
+Next level is available"
+
+[node name="changeEnemySpeed" type="Button" parent="GUI"]
+offset_left = 1362.0
+offset_top = -984.0
+offset_right = 1849.0
+offset_bottom = -824.0
+focus_mode = 0
+theme_override_fonts/font = ExtResource("3_0wtv6")
+theme_override_font_sizes/font_size = 80
+text = "1x enemy speed"
+script = ExtResource("7_h427t")
+
+[node name="Background" type="Sprite2D" parent="." groups=["Backgrounds"]]
+position = Vector2(960, 540)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_gwj01")
+
+[node name="bottomLine" parent="Background" instance=ExtResource("8_sh53b")]
+position = Vector2(-1920, 1086)
+
+[node name="Spaceship" parent="." instance=ExtResource("9_ghywo")]
+position = Vector2(960, 930)
+
+[node name="Enemies" type="Node2D" parent="."]
+position = Vector2(9, 0)
+
+[node name="RedEnemy" parent="Enemies" instance=ExtResource("10_hbbyg")]
+position = Vector2(200, 200)
+
+[node name="RedEnemy2" parent="Enemies" instance=ExtResource("10_hbbyg")]
+position = Vector2(400, 200)
+
+[node name="RedEnemy3" parent="Enemies" instance=ExtResource("10_hbbyg")]
+position = Vector2(600, 200)
+
+[node name="RedEnemy4" parent="Enemies" instance=ExtResource("10_hbbyg")]
+position = Vector2(1700, 200)
+
+[node name="RedEnemy5" parent="Enemies" instance=ExtResource("10_hbbyg")]
+position = Vector2(1500, 200)
+
+[node name="RedEnemy6" parent="Enemies" instance=ExtResource("10_hbbyg")]
+position = Vector2(1300, 200)
+
+[node name="RedEnemy7" parent="Enemies" instance=ExtResource("10_hbbyg")]
+position = Vector2(1100, 300)
+
+[node name="RedEnemy8" parent="Enemies" instance=ExtResource("10_hbbyg")]
+position = Vector2(800, 300)
+
+[node name="RedEnemy9" parent="Enemies" instance=ExtResource("10_hbbyg")]
+position = Vector2(400, 400)
+
+[node name="RedEnemy10" parent="Enemies" instance=ExtResource("10_hbbyg")]
+position = Vector2(1500, 400)
+
+[node name="RedEnemy11" parent="Enemies" instance=ExtResource("10_hbbyg")]
+position = Vector2(950, 400)
+
+[node name="RedEnemy12" parent="Enemies" instance=ExtResource("10_hbbyg")]
+position = Vector2(950, 250)
+
+[node name="RedEnemy13" parent="Enemies" instance=ExtResource("10_hbbyg")]
+position = Vector2(600, -100)
+
+[node name="RedEnemy14" parent="Enemies" instance=ExtResource("10_hbbyg")]
+position = Vector2(200, -100)
+
+[node name="RedEnemy15" parent="Enemies" instance=ExtResource("10_hbbyg")]
+position = Vector2(1300, -100)
+
+[node name="RedEnemy16" parent="Enemies" instance=ExtResource("10_hbbyg")]
+position = Vector2(1700, -100)
+
+[node name="OrangeEnemy" parent="Enemies" instance=ExtResource("11_fyvt3")]
+position = Vector2(929, -418)
+
+[node name="EnemyMoveTimer" parent="." instance=ExtResource("11_du533")]
+wait_time = 2.0
+
+[connection signal="pressed" from="GUI/ResetLevel" to="GUI/ResetLevel" method="_on_pressed"]
+[connection signal="resetLevel" from="GUI/ResetLevel" to="." method="_on_reset_level_reset_level"]
+[connection signal="start_game" from="GUI/StartLevelButton" to="." method="_on_start_level_button_start_game"]
+[connection signal="pressed" from="GUI/GoToLevelSelection" to="GUI/GoToLevelSelection" method="_on_pressed"]
+[connection signal="button_down" from="GUI/changeEnemySpeed" to="GUI/changeEnemySpeed" method="_on_button_down"]
+[connection signal="button_up" from="GUI/changeEnemySpeed" to="GUI/changeEnemySpeed" method="_on_button_up"]
+[connection signal="changeModifier" from="GUI/changeEnemySpeed" to="." method="_on_change_enemy_speed_change_modifier"]
+[connection signal="area_entered" from="Background/bottomLine" to="." method="_on_bottom_line_area_entered"]
+[connection signal="game_over" from="Background/bottomLine" to="." method="_on_bottom_line_game_over"]
+[connection signal="shoot" from="Spaceship" to="." method="_on_spaceship_shoot"]
+[connection signal="spaceshipDead" from="Spaceship" to="." method="_on_spaceship_spaceship_dead"]
+[connection signal="timeout" from="EnemyMoveTimer" to="." method="_on_enemy_move_timer_timeout"]
+[connection signal="timeout" from="EnemyMoveTimer" to="." method="_on_red_enemy_move_timer_timeout"]

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1cwdfxlgjljj"]
+
+[ext_resource type="FontFile" uid="uid://ct7nicg7asvhg" path="res://assets/MaldiniBold.ttf" id="1_31v4c"]
+[ext_resource type="Script" path="res://scripts/StartLevelButton.gd" id="1_wpx4w"]
+
+[node name="StartLevelButton" type="Button"]
+offset_right = 8.0
+offset_bottom = 8.0
+theme_override_fonts/font = ExtResource("1_31v4c")
+theme_override_font_sizes/font_size = 60
+text = "START GAME"
+script = ExtResource("1_wpx4w")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

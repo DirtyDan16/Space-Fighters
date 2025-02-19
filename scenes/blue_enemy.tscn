@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3 uid="uid://rr85lshtcpee"]
+
+[ext_resource type="Script" path="res://scripts/shooty_enemies.gd" id="1_yic1l"]
+[ext_resource type="PackedScene" uid="uid://bfkhn4gpc23qf" path="res://scenes/blue_laser.tscn" id="2_vawjl"]
+[ext_resource type="Texture2D" uid="uid://c37hkcqmmbfi8" path="res://assets/blue-spaceship.png" id="2_wfca5"]
+[ext_resource type="FontFile" uid="uid://ct7nicg7asvhg" path="res://assets/MaldiniBold.ttf" id="3_se7j3"]
+[ext_resource type="PackedScene" uid="uid://dn02kiivoxkpe" path="res://scenes/blue_death_particles.tscn" id="3_vf7qn"]
+[ext_resource type="PackedScene" uid="uid://ds0bvbqur7nob" path="res://scenes/enemy_death_sfx.tscn" id="5_df4dm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p4ax7"]
+size = Vector2(158, 197.313)
+
+[node name="BlueEnemy" type="Area2D" groups=["Enemies", "ShootyEnemies"]]
+collision_layer = 513
+script = ExtResource("1_yic1l")
+enemy_laser = ExtResource("2_vawjl")
+death_particles = ExtResource("3_vf7qn")
+death_sfx = ExtResource("5_df4dm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.343506, 0.343803)
+shape = SubResource("RectangleShape2D_p4ax7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0.343507, 6)
+scale = Vector2(1.24458, 1.385)
+texture = ExtResource("2_wfca5")
+
+[node name="HpDisplay" type="Label" parent="."]
+z_index = 3
+offset_left = -73.0
+offset_top = -61.0
+offset_right = -28.0
+offset_bottom = -30.0
+theme_override_fonts/font = ExtResource("3_se7j3")
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+
+[node name="ShootPoint" type="Node2D" parent="."]
+position = Vector2(10.3435, 112)
+
+[node name="ShotDelay" type="Timer" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="ShotDelay" to="." method="_on_shot_delay_timeout"]

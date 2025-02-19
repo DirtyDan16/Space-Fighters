@@ -1,0 +1,63 @@
+[gd_scene load_steps=7 format=3 uid="uid://bfkhn4gpc23qf"]
+
+[ext_resource type="Script" path="res://scripts/blue_laser.gd" id="1_5c3qc"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uub0v"]
+radius = 4.0
+height = 52.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_esp8l"]
+bg_color = Color(0, 0.780392, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="Curve" id="Curve_ppmfc"]
+max_value = 90.0
+_data = [Vector2(0, 0), 0.0, 90.0, 0, 1, Vector2(1, 90), 90.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_qx6ng"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.994382, 0.318681), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_ui84i"]
+colors = PackedColorArray(0.553333, 0.553333, 0.553333, 1, 1, 1, 1, 1)
+
+[node name="BlueLaser" type="Area2D" groups=["BadLasers"]]
+script = ExtResource("1_5c3qc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 27)
+shape = SubResource("CapsuleShape2D_uub0v")
+
+[node name="Laser" type="Panel" parent="."]
+z_index = 2
+offset_left = -5.0
+offset_right = 5.0
+offset_bottom = 56.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_esp8l")
+
+[node name="Range" type="Node2D" parent="."]
+position = Vector2(0, 900)
+
+[node name="Particles" type="CPUParticles2D" parent="."]
+position = Vector2(0, 27)
+amount = 15
+emission_shape = 3
+emission_rect_extents = Vector2(15, 45)
+gravity = Vector2(0, 0)
+angle_min = 3.0
+angle_max = 3.0
+angle_curve = SubResource("Curve_ppmfc")
+scale_amount_min = 4.0
+scale_amount_max = 6.0
+scale_amount_curve = SubResource("Curve_qx6ng")
+color = Color(0.373239, 0.699192, 0.999999, 1)
+color_initial_ramp = SubResource("Gradient_ui84i")

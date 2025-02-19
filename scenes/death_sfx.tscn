@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cceewqt6r758v"]
+
+[ext_resource type="AudioStream" uid="uid://b70tjchb6ieo2" path="res://SFX/Death.wav" id="1_n80u7"]
+
+[node name="DeathSfx" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_n80u7")
+volume_db = 10.0
+autoplay = true
